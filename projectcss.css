@@ -17,7 +17,7 @@ body {
 }
 
 .header h1 {
-  color: #825CFF;
+  color: green;
   font-size: 2rem;
   margin-bottom: 10px;
 }
@@ -40,7 +40,7 @@ input#stock-input {
 button#search-btn {
   font-family: 'Poppins', sans-serif;
   padding: 10px 15px;
-  background-color: #825CFF;
+  background-color: green;
   color: white;
   border: none;
   border-radius: 5px;
@@ -49,7 +49,7 @@ button#search-btn {
 }
 
 button#search-btn:hover {
-  background-color: #6b4ae8;
+  background-color: dark green;
 }
 
 .main-content {
@@ -59,7 +59,7 @@ button#search-btn:hover {
 }
 
 .stock-card {
-  background-color: white;
+  background-color: black;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -69,7 +69,7 @@ button#search-btn:hover {
 }
 
 .stock-card h2 {
-  color: #825CFF;
+  color: yellow;
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
