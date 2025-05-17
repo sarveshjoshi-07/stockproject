@@ -1,7 +1,10 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Slab:wght@700&display=swap');
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #f0f4f8;
+  background: linear-gradient(to right, #eef2f3, #8e9eab);
   color: #333;
 }
 
@@ -17,8 +20,9 @@ body {
 }
 
 .header h1 {
+  font-family: 'Roboto Slab', serif;
   color: green;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 10px;
 }
 
@@ -26,6 +30,8 @@ body {
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 input#stock-input {
@@ -35,6 +41,13 @@ input#stock-input {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input#stock-input:focus {
+  border-color: green;
+  box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
+  outline: none;
 }
 
 button#search-btn {
@@ -46,10 +59,15 @@ button#search-btn {
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
 button#search-btn:hover {
-  background-color: dark green;
+  background-color: darkgreen;
+}
+
+button#search-btn:active {
+  transform: scale(0.97);
 }
 
 .main-content {
@@ -59,14 +77,21 @@ button#search-btn:hover {
 }
 
 .stock-card {
-  background-color: ##d9d9d9;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin-bottom: 20px;
   width: 100%;
-  font-color: yellow;
+  color: #333;
+  border-left: 5px solid green;
+  transition: transform 0.3s ease;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.stock-card:hover {
+  transform: scale(1.02);
 }
 
 .stock-card h2 {
@@ -81,7 +106,8 @@ button#search-btn:hover {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
 }
 
 .footer {
@@ -89,4 +115,31 @@ button#search-btn:hover {
   margin-top: 20px;
   font-size: 0.9rem;
   color: #555;
+}
+
+/* Loader or status message style */
+.loader {
+  margin-top: 20px;
+  font-style: italic;
+  color: #666;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .input-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input#stock-input,
+  button#search-btn {
+    width: 100%;
+    max-width: 300px;
+  }
 }
