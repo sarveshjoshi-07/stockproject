@@ -89,7 +89,16 @@ button#search-btn:active {
   transition: transform 0.3s ease;
   animation: fadeIn 0.8s ease-in-out;
 }
-
+<div class="stock-card">
+  <h2>Apple Inc. (AAPL)</h2>
+  <p><strong>Current Price:</strong> $178.35</p>
+  <p>
+    <strong>Change:</strong>
+    <span style="color: green;">▲ +1.24 (0.70%)</span>
+  </p>
+  <p><strong>Market Cap:</strong> $2.87T</p>
+  <p><strong>Volume:</strong> 54.2M</p>
+</div>
 .stock-card:hover {
   transform: scale(1.02);
 }
