@@ -28,21 +28,6 @@ async function fetchStockData(symbol) {
 }
 
 function updateUI(symbol, timeSeries) {
-  const dates = Object.keys(timeSeries).slice(0, 15); // Last 15 days
-  const prices = dates.map(date => parseFloat(timeSeries[date]['4. close']));
-
-  const latestPrice = prices[0];
-  const previousPrice = prices[1];
-  const changePercent = (((latestPrice - previousPrice) / previousPrice) * 100).toFixed(2);
-
-  stockName.textContent = symbol.toUpperCase();
-  stockPrice.textContent = `Price: $${latestPrice.toFixed(2)}`;
-  stockChange.textContent = `Change: ${changePercent}%`;
-
-  updateChart(dates.reverse(), prices.reverse());
-}
-
-function updateUI(symbol, timeSeries) {
     const dates = Object.keys(timeSeries).slice(0, 15);
     const latestData = timeSeries[dates[0]];
 
@@ -66,11 +51,6 @@ function updateUI(symbol, timeSeries) {
 }
 
 function updateChart(dates, prices) {
-  if (chart) {
-    chart.destroy();
-  }
-
-  function updateChart(dates, prices) {
     if (chart) {
         chart.destroy();
     }
@@ -156,10 +136,10 @@ function updateChart(dates, prices) {
 }
 
 searchBtn.addEventListener('click', () => {
-  const symbol = stockInput.value.trim();
-  if (symbol) {
-    fetchStockData(symbol);
-  } else {
-    alert('Please enter a stock symbol!');
-  }
+    const symbol = stockInput.value.trim();
+    if (symbol) {
+        fetchStockData(symbol);
+    } else {
+        alert('Please enter a stock symbol!');
+    }
 });
