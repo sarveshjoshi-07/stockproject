@@ -7,7 +7,7 @@ const stockChart = document.getElementById('stock-chart').getContext('2d');
 
 let chart;
 
-const API_KEY = 'demo';
+const API_KEY = 'E4KGZHT3WRHJ485C';
 
 async function fetchStockData(symbol) {
   try {
