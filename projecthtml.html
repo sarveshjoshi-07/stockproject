@@ -20,8 +20,8 @@
     <main class="main-content">
       <div class="stock-card">
         <h2 id="stock-name">Stock Name</h2>
-        <p id="stock-price">Price: $0.00</p>
-        <p id="stock-change">Change: 0.00%</p>
+        <p id="stock-price">Price: <span id="price-value">$0.00</span></p>
+        <p id="stock-change">Change: <span id="change-value" style="color:green">0.00%</span></p>
       </div>
       <div class="chart-container">
         <canvas id="stock-chart"></canvas>
@@ -32,6 +32,7 @@
       <p>Powered by Alpha Vantage</p>
     </footer>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="projectjavas.js"></script>
 </body>
