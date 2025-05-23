@@ -7,7 +7,7 @@ const stockChart = document.getElementById('stock-chart').getContext('2d');
 
 let chart;
 
-const API_KEY = A86P04LPXN3MK3U4;
+const API_KEY = 'A86P04LPXN3MK3U4';
 async function fetchStockData(symbol) {
   try {
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`;
