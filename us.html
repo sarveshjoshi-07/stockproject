@@ -1,0 +1,126 @@
+<!-- us.html (US Stock Tracker) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Stock Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      color: #000000;
+      margin: 0;
+    }
+    header, nav {
+      background-color: #003300;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      width: 200px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #00cc00;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .green { color: green; }
+    .red { color: red; }
+    canvas {
+      max-width: 100%;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📊 US Stock Tracker</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="us.html">US Stocks</a>
+    <a href="india.html">Indian Stocks</a>
+  </nav>
+  <div class="container">
+    <input type="text" id="usSymbol" placeholder="Enter US Stock Symbol">
+    <button onclick="fetchStock('us')">Search</button>
+    <h3 id="usName"></h3>
+    <p>Price: $<span id="usPrice"></span></p>
+    <p>Change: <span id="usChange"></span></p>
+    <canvas id="usChart"></canvas>
+  </div>
+  <script>
+    const apiKey = '1O0BKVK46JUZ9JTL';
+    async function fetchStock(region) {
+      const symbol = document.getElementById(`${region}Symbol`).value;
+      const nameEl = document.getElementById(`${region}Name`);
+      const priceEl = document.getElementById(`${region}Price`);
+      const changeEl = document.getElementById(`${region}Change`);
+      const chartId = `${region}Chart`;
+
+      const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const timeSeries = data['Time Series (Daily)'];
+      if (!timeSeries) return alert('Invalid Symbol or API limit reached');
+
+      const dates = Object.keys(timeSeries).slice(0, 15).reverse();
+      const prices = dates.map(date => parseFloat(timeSeries[date]['4. close']));
+      const latest = prices[prices.length - 1];
+      const previous = prices[prices.length - 2];
+      const change = (((latest - previous) / previous) * 100).toFixed(2);
+
+      nameEl.textContent = symbol.toUpperCase();
+      priceEl.textContent = latest.toFixed(2);
+      changeEl.innerHTML = `${Math.abs(change)}% ${(change >= 0 ? '🔼' : '🔽')}`;
+      changeEl.className = change >= 0 ? 'green' : 'red';
+
+      new Chart(document.getElementById(chartId), {
+        type: 'line',
+        data: {
+          labels: dates,
+          datasets: [{
+            label: 'Stock Price (USD)',
+            data: prices,
+            borderColor: '#00cc00',
+            backgroundColor: '#ccffcc',
+            tension: 0.2,
+            fill: false
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: true }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+
