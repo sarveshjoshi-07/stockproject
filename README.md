@@ -19,3 +19,7 @@ xhr.setRequestHeader('x-rapidapi-key', '44b090ba9bmsh8314faab4f337dcp1c8ce3jsn52
 xhr.setRequestHeader('x-rapidapi-host', 'indian-stock-exchange-api2.p.rapidapi.com');
 
 xhr.send(data);
+
+API :
+R4ZNQJNS9CIP4KAB
+SC4O05N5J0NQB0LZ
