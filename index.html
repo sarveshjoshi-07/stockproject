@@ -1,0 +1,139 @@
+<!-- index.html (Home Page) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Market Tracker - Home</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      color: #000000;
+      margin: 0;
+    }
+    header, footer {
+      background-color: #003300;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    nav {
+      background-color: #004d00;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .stock-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+    canvas {
+      width: 100% !important;
+      height: 200px !important;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📈 Stock Market Tracker</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="us.html">US Stocks</a>
+    <a href="india.html">Indian Stocks</a>
+    <a href="aboutus.html"> About Us </a>
+  </nav>
+  <div class="container">
+    <h2>About the Stock Market</h2>
+    <p>The stock market is a dynamic platform where investors buy and sell shares of companies. It reflects the economic health and offers opportunities for investment and growth. Track US and Indian stocks live with our tool.
+         The stock market is a dynamic financial ecosystem where shares of publicly listed companies are bought, sold, and traded. It serves as a barometer for a country’s economic health and plays a critical role in the capital formation process. By enabling companies to raise funds from the public through the issuance of stocks, the stock market supports business expansion, innovation, and job creation. Investors, ranging from individuals to institutions, participate in the market to earn returns through capital gains and dividends. 
+The rise or fall of market indices often reflects investor sentiment and can influence economic decisions across sectors. One of the most powerful aspects of the stock market is its ability to democratize wealth creation — offering anyone with knowledge and strategy a chance to grow their investments. When regulated efficiently, it fosters transparency, encourages savings, and strengthens economic resilience by channeling capital into productive ventures. In essence, the stock market is not just a platform for trading; it’s a pulse of the economy and a powerful engine of growth.</p>
+
+    <h3>Top Tech. Companies</h3>
+    <div class="stock-cards">
+      <div class="card">
+        <h4>Apple Inc. (AAPL)</h4>
+        <canvas id="chartAAPL"></canvas>
+      </div>
+      <div class="card">
+        <h4>Microsoft Corp. (MSFT)</h4>
+        <canvas id="chartMSFT"></canvas>
+      </div>
+      <div class="card">
+        <h4>Alphabet Inc. (GOOGL)</h4>
+        <canvas id="chartGOOGL"></canvas>
+      </div>
+    </div>
+  </div>
+
+   <script>
+    const API_KEY = 'SC4O05N5J0NQB0LZ';
+
+    async function fetchStockData(symbol, chartId) {
+      const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`;
+      const response = await fetch(url);
+      const data = await response.json();
+
+      const timeSeries = data['Time Series (Daily)'];
+      if (!timeSeries) return;
+
+      const dates = Object.keys(timeSeries).slice(0, 10).reverse();
+      const prices = dates.map(date => parseFloat(timeSeries[date]['4. close']));
+
+      new Chart(document.getElementById(chartId), {
+        type: 'line',
+        data: {
+          labels: dates,
+          datasets: [{
+            label: `${symbol} Closing Prices`,
+            data: prices,
+            borderColor: 'green',
+            backgroundColor: 'rgba(0, 128, 0, 0.2)',
+            fill: true,
+            tension: 0.4
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    fetchStockData('AAPL', 'chartAAPL');
+    fetchStockData('MSFT', 'chartMSFT');
+    fetchStockData('GOOGL', 'chartGOOGL');
+  </script>
+</body>
+</html>
