@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Corporate Actions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input, button {
+            padding: 10px;
+            margin-top: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .output-section {
+            text-align: left;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f1f1f1;
+            border-left: 4px solid #007bff;
+            border-radius: 5px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 10px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Stock Market Corporate Actions</h1>
+    <div class="container">
+        <input type="text" id="stockName" placeholder="Enter stock name (e.g., Tata Steel)">
+        <button onclick="fetchStockData()">Get Data</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function fetchStockData() {
+            const stockName = document.getElementById("stockName").value.trim();
+            if (stockName === "") {
+                document.getElementById("output").innerHTML = "<p>Please enter a valid stock name.</p>";
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    try {
+                        const response = JSON.parse(this.responseText);
+                        let outputHtml = `<div class='output-section'>`;
+
+                        // Board Meetings
+                        if (response.board_meetings) {
+                            outputHtml += `<div class='section-title'>${response.board_meetings.title}</div>`;
+                            outputHtml += `<table class='data-table'><tr><th>${response.board_meetings.header[0]}</th><th>${response.board_meetings.header[1]}</th></tr>`;
+                            response.board_meetings.data.forEach(row => {
+                                outputHtml += `<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`;
+                            });
+                            outputHtml += `</table>`;
+                        }
+
+                        // Bonus
+                        if (response.bonus) {
+                            outputHtml += `<div class='section-title'>${response.bonus.title}</div>`;
+                            outputHtml += `<p>${response.bonus.msg}</p>`;
+                        }
+
+                        // Rights Issue
+                        if (response.rights) {
+                            outputHtml += `<div class='section-title'>${response.rights.title}</div>`;
+                            outputHtml += `<table class='data-table'><tr>`;
+                            response.rights.header.forEach(header => {
+                                outputHtml += `<th>${header}</th>`;
+                            });
+                            outputHtml += `</tr>`;
+                            response.rights.data.forEach(row => {
+                                outputHtml += `<tr>`;
+                                row.forEach(cell => {
+                                    outputHtml += `<td>${cell}</td>`;
+                                });
+                                outputHtml += `</tr>`;
+                            });
+                            outputHtml += `</table>`;
+                        }
+
+                        outputHtml += `</div>`;
+                        document.getElementById("output").innerHTML = outputHtml;
+                    } catch (error) {
+                        document.getElementById("output").innerHTML = "<p>Error fetching data.</p>";
+                    }
+                }
+            });
+
+            xhr.open("GET", `https://indian-stock-exchange-api2.p.rapidapi.com/corporate_actions?stock_name=${stockName}`);
+            xhr.setRequestHeader("x-rapidapi-key", "44b090ba9bmsh8314faab4f337dcp1c8ce3jsn52d5a86a2717");
+            xhr.setRequestHeader("x-rapidapi-host", "indian-stock-exchange-api2.p.rapidapi.com");
+
+            xhr.send(null);
+        }
+    </script>
+
+</body>
+</html>
