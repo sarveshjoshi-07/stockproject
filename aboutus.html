@@ -1,136 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - StockTrack</title>
-    <style>
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - StockTrack</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-        header {
-            padding: 20px;
-            text-align: center;
-            background-color: #111;
-            border-bottom: 2px solid #0f0;
-        }
+    header, footer {
+      background-color: #003300;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
 
-        header h1 {
-            color: #0f0;
-        }
+    nav {
+      background-color: #004d00;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
 
-        header p {
-            max-width: 800px;
-            margin: 10px auto;
-            font-size: 1.1em;
-        }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        .team-section {
-            padding: 40px 20px;
-            text-align: center;
-        }
+    header h1 {
+      margin: 0;
+    }
 
-        .team-section h2 {
-            color: #f00;
-            margin-bottom: 30px;
-        }
+    header p {
+      max-width: 900px;
+      margin: 10px auto 0;
+      font-size: 1.1em;
+    }
 
-        .team-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
+    .team-section {
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-        .team-member {
-            background-color: #111;
-            padding: 20px;
-            border: 2px solid #333;
-            border-radius: 10px;
-            width: 250px;
-            transition: transform 0.3s ease;
-        }
+    .team-section h2 {
+      color: #004d00;
+      margin-bottom: 30px;
+    }
 
-        .team-member:hover {
-            transform: scale(1.05);
-            border-color: #0f0;
-        }
+    .team-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
 
-        .team-member img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
+    .team-member {
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
 
-        .team-member h3 {
-            margin-top: 15px;
-            color: #0f0;
-        }
+    .team-member:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 77, 0, 0.4);
+    }
 
-        .team-member a {
-            display: block;
-            margin: 10px 0;
-            color: #f00;
-            text-decoration: none;
-        }
+    .team-member img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
 
-        .team-member a:hover {
-            text-decoration: underline;
-        }
+    .team-member h3 {
+      margin-top: 15px;
+      color: #003300;
+    }
 
-        .team-member p {
-            font-size: 0.95em;
-        }
-    </style>
+    .team-member a {
+      display: block;
+      margin: 10px 0;
+      color: #004d00;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .team-member a:hover {
+      text-decoration: underline;
+    }
+
+    .team-member p {
+      font-size: 0.95em;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>About the Project</h1>
-        <p>Stock Market Tracker is a real-time stock price tracker developed by a team of passionate students. Designed to reflect the dynamic nature of the stock market. Our aim was to build a simple, functional application powered by real-time data through an API. Which can reflect the data to the user according to their need and also give the information about the share market in a easier way. </p>
-    </header>
- <center><nav>
+
+  <header>
+    <h1>About the Project</h1>
+    <p>Stock Market Tracker is a real-time stock price tracker developed by a team of passionate students. Designed to reflect the dynamic nature of the stock market. Our aim was to build a simple, functional application powered by real-time data through an API. Which can reflect the data to the user according to their need and also give the information about the share market in a easier way.</p>
+  </header>
+
+  <nav>
     <a href="index.html">Home</a>
-</nav></center>
+    <a href="us.html">US Stocks</a>
+    <a href="india.html">Indian Stocks</a>
+    <a href="aboutus.html">About Us</a>
+  </nav>
 
-    <section class="team-section">
-        <h2>Meet the Team</h2>
-        <div class="team-container">
+  <section class="team-section">
+    <h2>Meet the Team</h2>
+    <div class="team-container">
 
-            <div class="team-member">
-                <img src="pic1.jpeg" alt="Your Name">
-                <h3>Aman Shaikh</h3>
-                <a href="https://www.linkedin.com/in/aman-shaikh-879334292?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " target="_blank">LinkedIn</a>
-                <p>Backend Developer & Project Lead. Handled API integration and backend logic. Managed project execution.</p>
-            </div>
+      <div class="team-member">
+        <img src="pic1.jpeg" alt="Aman Shaikh">
+        <h3>Aman Shaikh</h3>
+        <a href="https://www.linkedin.com/in/aman-shaikh-879334292" target="_blank">LinkedIn</a>
+        <p>Backend Developer & Project Lead. Handled API integration and backend logic. Managed project execution.</p>
+      </div>
 
-            <div class="team-member">
-                <img src="pic2.jpeg" alt="Member 2">
-                <h3>Kunal Kalbande</h3>
-                <a href="https://www.linkedin.com/in/kunalkalbande05/" target="_blank">LinkedIn</a>
-                <p>Project Planner & Design. Organized project structure, tracked progress, and supported development consistency.</p>
-            </div>
+      <div class="team-member">
+        <img src="pic2.jpeg" alt="Kunal Kalbande">
+        <h3>Kunal Kalbande</h3>
+        <a href="https://www.linkedin.com/in/kunalkalbande05/" target="_blank">LinkedIn</a>
+        <p>Project Planner & Design. Organized project structure, tracked progress, and supported development consistency.</p>
+      </div>
 
-            <div class="team-member">
-                <img src="pic3.jpeg" alt="Member 3">
-                <h3>Sarvesh Joshi</h3>
-                <a href="https://www.linkedin.com/in/sarveshjoshiexe/" target="_blank">LinkedIn</a>
-                <p>Frontend Developer. Built and styled user interface, integrated data.</p>
-            </div>
+      <div class="team-member">
+        <img src="pic3.jpeg" alt="Sarvesh Joshi">
+        <h3>Sarvesh Joshi</h3>
+        <a href="https://www.linkedin.com/in/sarveshjoshiexe/" target="_blank">LinkedIn</a>
+        <p>Frontend Developer. Built and styled user interface, integrated data.</p>
+      </div>
 
-            <div class="team-member">
-                <img src="pic4.jpeg" alt="Member 4">
-                <h3>Saurabh Yadav</h3>
-                <a href="https://www.linkedin.com/in/saurabhyadav0866/" target="_blank">LinkedIn</a>
-                <p>Frontend Developer. Worked on enhancements and contributed to layout design.</p>
-            </div>
-	
+      <div class="team-member">
+        <img src="pic4.jpeg" alt="Saurabh Yadav">
+        <h3>Saurabh Yadav</h3>
+        <a href="https://www.linkedin.com/in/saurabhyadav0866/" target="_blank">LinkedIn</a>
+        <p>Frontend Developer. Worked on enhancements and contributed to layout design.</p>
+      </div>
 
-        </div>
-    </section>
+    </div>
+  </section>
+
+  <footer>
+    <p>Project Members: Aman Shaikh, Kunal Kalbande, Sarvesh Joshi, Saurabh Yadav</p>
+  </footer>
+
 </body>
 </html>
